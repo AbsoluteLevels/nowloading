@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body class="night">
+    <!-- Main Content -->
+    <main class="center-container">
+        <section class="game-section">
+            <h1 style="text-align:center;"><img src="assets/skull.png" alt="Skull Icon" style="height:1.3em;vertical-align:middle;"> The Land Beyond <img src="assets/skull.png" alt="Skull Icon" style="height:1.3em;vertical-align:middle;"></h1>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:1.5em;margin-top:1.5em;">
+                <div
+                    style="width:220px;height:160px;display:flex;align-items:center;justify-content:center;background:#2222;border-radius:12px;overflow:hidden;">
+                    <img src="./assets/goto_v1ff5kC876g.gif" alt="Death GIF" id="deathGif"
+                        style="max-width:100%;max-height:100%;display:block;">
+                </div>
+                <div style="text-align:center;max-width:320px;">
+                    <p id="deathText">Death is not the end, but a transformation—a return to the mystery from which all things arise. In its silence, we are reminded to cherish each breath, to love without hesitation, and to find meaning in every fleeting moment. What we call the end is but another beginning.</p>
+                    <button id="templeBtn" style="margin-top:1.5em;font-size:1.1em;padding:0.7em 1.5em;border:none;border-radius:8px;background:#69329c;color:#fff;cursor:pointer;transition:background 0.2s;">To The Temple</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <audio id="boom-audio" src="assets/boom.wav" preload="auto"></audio>
+    <script> 
+        document.body.classList.add('night');
+        localStorage.setItem('nightmode', '1');
+        function spawnExplosionParticles(count = 24) {
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                const size = Math.random() * 18 + 8;
+                const colors = ['#ffecb3', '#ff9800', '#f44336', '#fff', '#ffd600', '#ff5722'];
+                particle.style.position = 'fixed';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.background = colors[Math.floor(Math.random()*colors.length)];
+                particle.style.borderRadius = '50%';
+                particle.style.opacity = 0.85;
+                particle.style.zIndex = 3000;
+                particle.style.pointerEvents = 'none';
+                particle.style.boxShadow = '0 0 16px 4px #fff8';
+                particle.style.transition = 'transform 1.2s cubic-bezier(.17,.67,.83,.67), opacity 1.2s';
+                document.body.appendChild(particle);
+                setTimeout(() => {
+                    particle.style.transform = `scale(${Math.random()*2+1.5}) translateY(${Math.random()*200-100}px)`;
+                    particle.style.opacity = 0;
+                }, 10);
+                setTimeout(() => {
+                    particle.remove();
+                }, 1300);
+            }
+        }
+        document.getElementById('templeBtn').addEventListener('click', function() {
+            // Change text
+            const text = document.getElementById('deathText');
+            text.textContent = 'YOU WERE DECEIVED';
+            // Spin text
+            text.style.display = 'inline-block';
+            text.style.animation = 'spinText 1.2s cubic-bezier(.17,.67,.83,.67) 1';
+            // Play sound
+            const audio = document.getElementById('boom-audio');
+            audio.pause();
+            audio.currentTime = 0;
+            audio.muted = false;
+            audio.play().catch(() => {});
+            // Spawn explosion particles for 2 seconds
+            let particleInterval = setInterval(() => spawnExplosionParticles(8), 120);
+            setTimeout(() => clearInterval(particleInterval), 2000);
+            // Redirect after audio ends
+            audio.onended = () => {
+                window.location.href = 'index.html';
+            };
+        });     
+        const style = document.createElement('style');
+        style.textContent = `@keyframes spinText { 0%{transform:rotate(0deg);} 80%{transform:rotate(720deg) scale(1.2);} 100%{transform:rotate(720deg) scale(1);} }`;
+        document.head.appendChild(style);
+    </script>
+</body>
+
+</html>

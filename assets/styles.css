@@ -1,0 +1,306 @@
+/* Enlightenment Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.modal-content {
+    background: #fff;
+    margin: 8vh auto;
+    padding: 2em 1.5em 1.5em 1.5em;
+    border-radius: 18px;
+    max-width: 95vw;
+    width: 350px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    position: relative;
+    animation: modalFadeIn 0.4s;
+    box-sizing: border-box;
+}
+
+@media (max-width: 500px) {
+    .modal-content {
+        width: 95vw;
+        min-width: 0;
+        padding: 1.2em 0.5em 1em 0.5em;
+        font-size: 1em;
+    }
+
+    .modal-body img {
+        height: 2em !important;
+        max-width: 60vw;
+    }
+
+    .modal-body h2,
+    .modal-body p {
+        font-size: 1em;
+    }
+}
+
+body.night .modal-content {
+    background: #23272f;
+    color: #fffde7;
+}
+
+.close {
+    color: #888;
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close:hover {
+    color: #644b1c;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f5f5f5 url('assets/background.png') center center/cover no-repeat fixed;
+    color: #222;
+}
+
+body.night {
+    background: #181c22 url('assets/background.png') center center/cover no-repeat fixed;
+    color: #e0e0e0;
+    /* Optionally add a dark overlay for night mode */
+}
+
+body.night {
+    background: #181c22;
+    color: #e0e0e0;
+}
+
+.night .game-section {
+    background: #23272f;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+.night canvas#gameCanvas {
+    background: #22262c;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.night button {
+    background: #69329c;
+    color: #fff;
+}
+
+.night button:hover {
+    background: #733ea5;
+}
+
+.night footer a {
+    color: #90caf9;
+}
+
+.center-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('./background.png') center center/cover no-repeat;
+    background-attachment: fixed;
+}
+
+/* Night mode slider styles */
+.nightmode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+}
+
+.global-nightmode {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 1000;
+    background: #fff;
+    border-radius: 18px;
+    padding: 4px 10px 4px 6px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+body.night .global-nightmode {
+    background: #23272f;
+}
+
+.nightmode-label {
+    font-size: 1.3em;
+    user-select: none;
+    margin-left: 2px;
+    line-height: 1;
+    display: inline-block;
+    transition: color 0.3s, filter 0.3s;
+}
+
+.nightmode-label.sun {
+    color: #ffb300;
+    filter: drop-shadow(0 0 2px #fffde7);
+}
+
+.nightmode-label.moon {
+    color: #90caf9;
+    filter: drop-shadow(0 0 2px #23272f);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.switch input:checked+.slider {
+    background-color: #69329c;
+}
+
+.switch input:checked+.slider:before {
+    transform: translateX(20px);
+}
+
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.game-section {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 95vw;
+}
+
+canvas#gameCanvas {
+    display: block;
+    margin: 1.5rem auto;
+    background: #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    width: 90vw;
+    max-width: 350px;
+    height: auto;
+}
+
+#gameControls {
+    margin-top: 1rem;
+}
+
+button {
+    font-size: 1.1rem;
+    padding: 0.7em 1.5em;
+    border: none;
+    border-radius: 8px;
+    background: #3bbb3f;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #388e3c;
+}
+
+footer {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+footer a {
+    color: #644b1c;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .game-section {
+        padding: 1rem 0.5rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 0.6em 1.2em;
+    }
+
+    .modal-content {
+        background: #fff;
+        margin: 8vh auto;
+        padding: 2em 1.5em 1.5em 1.5em;
+        border-radius: 18px;
+        max-width: 95vw;
+        width: 350px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+        position: relative;
+        animation: modalFadeIn 0.4s;
+        box-sizing: border-box;
+    }
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Temple</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+  <!-- Main Content -->
+  <main class="center-container">
+    <section class="game-section">
+      <h1 style="display:flex;align-items:center;justify-content:center;gap:0.5em;">
+        <img src="assets/arch.png" alt="Arch Icon" style="height:1.3em;vertical-align:middle;"> The Temple <img
+          src="assets/arch.png" alt="Arch Icon" style="height:1.3em;vertical-align:middle;">
+      </h1>
+      <div style="position:relative;width:350px;height:350px;max-width:90vw;max-height:90vw;margin:1.5em auto;">
+        <img src="./assets/witch_board.jpg" alt="Witch Board" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);background:#e0e0e0;z-index:1;">
+        <img src="./assets/wheretogo.png" alt="Witch Glyph" id="witchGlyph" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);z-index:2;display:none;">
+      </div>
+      <div style="text-align:center;max-width:320px;">
+        <p id="templeText">At the base of the temple, you find a series of etchings in an ancient door...</p>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.body.classList.remove('night');
+    localStorage.setItem('nightmode', '0');
+  </script>
+</body>
+
+</html>

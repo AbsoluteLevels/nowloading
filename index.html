@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gain Enlightenment</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+    <!-- Main Content -->
+    <main class="center-container">
+        <section class="game-section">
+            <h1 style="display:flex;align-items:center;justify-content:center;gap:0.5em;">
+                <img src="assets/arch.png" alt="Arch Icon" style="height:1.3em;vertical-align:middle;"> Enlightenment <img src="assets/arch.png" alt="Arch Icon" style="height:1.3em;vertical-align:middle;">
+            </h1>
+            <canvas id="gameCanvas" width="350" height="350"></canvas>
+            <div id="scoreBoard" style="margin-top:1.2em;text-align:center;"></div>
+            <div id="enlightenModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <span class="close" id="closeModal">&times;</span>
+                    <div class="modal-body">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Night Mode Toggle -->
+    <div class="nightmode-toggle global-nightmode">
+        <label class="switch">
+            <input type="checkbox" id="nightSlider" checked>
+            <span class="slider round"></span>
+        </label>
+        <span class="nightmode-label" title="Night Mode">🌙</span>
+    </div>
+    </main>
+    <!-- Go To /death.html -->
+    <script src="assets/game.js"></script>
+    <script>
+        function setNightMode(on) {
+            document.body.classList.toggle('night', on);
+            localStorage.setItem('nightmode', on ? '1' : '0');
+            document.getElementById('nightSlider').checked = on;
+            const label = document.querySelector('.nightmode-label');
+            if (on) {
+                label.textContent = '🌙';
+                label.classList.remove('sun');
+                label.classList.add('moon');
+            } else {
+                label.textContent = '☀️';
+                label.classList.remove('moon');
+                label.classList.add('sun');
+            }
+        }
+        const slider = document.getElementById('nightSlider');
+        slider.addEventListener('change', function () {
+            setNightMode(this.checked);
+        });
+        const saved = localStorage.getItem('nightmode');
+        setNightMode(saved === null ? true : saved === '1');
+    </script>
+    <!-- Go To /thetemple.html -->
+</body>
+
+</html>
